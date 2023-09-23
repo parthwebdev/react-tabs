@@ -10,13 +10,15 @@ const tabs = [
 
 export const Tabs = () => {
   const [activeTab, setActiveTab] = useState<number>(tabs[0].id);
-
+  const handleActiveTab = (tabId : number) => (e : React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    setActiveTab(tabId)}
   return (
     <div className="flex gap-20">
       {tabs.map((tab) => (
         <button
           key={tab.id}
-          onClick={() => setActiveTab(tab.id)}
+          onClick={handleActiveTab(tab.id)}
           className={`${
             activeTab === tab.id ? "" : "hover:text-white/60"
           } text-2xl font-medium px-4 py-1.5 relative`}
